@@ -4,6 +4,9 @@ class CommentList extends Component {
     constructor(props) {
         super(props);
     }
+    handleClick(i) {
+        this.props.onGetIndex(i)
+    }
     render() {
         return (
             <div className="comment-list-component">
@@ -14,6 +17,8 @@ class CommentList extends Component {
                             <li key={index} className="list-group-item">
                                 {item}
                                 <button type="button" className="btn btn-danger"
+                                        key={index}
+                                        onClick={this.handleClick.bind(this, index)}
                                 >刪除</button>
                             </li>
                         ))

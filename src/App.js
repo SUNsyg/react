@@ -15,10 +15,18 @@ class App extends Component {
             comments: ['this is my first reply']
         }
         this.addComment = this.addComment.bind(this)
+        this.getIndex = this.getIndex.bind(this)
     }
     addComment(comment) {
         this.setState({
             comments: [...this.state.comments, comment]
+        })
+    }
+    getIndex(i) {
+        let list = [...this.state.comments]
+        list.splice(i, 1)
+        this.setState({
+            comments: list
         })
     }
     render() {
@@ -29,7 +37,9 @@ class App extends Component {
                     <img src={logo} className="app-logo" alt={logo}/>
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <CommentList comments={comments} />
+                <CommentList comments={comments}
+                             onGetIndex={this.getIndex}
+                />
                 <CommentBox
                     commentsLength={comments.length}
                     onAddComment={this.addComment}
